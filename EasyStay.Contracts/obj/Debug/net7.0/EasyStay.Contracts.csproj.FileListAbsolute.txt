@@ -1,0 +1,15 @@
+D:\Repositorios\Prueba22027\EasyStay\EasyStay.Contracts\bin\Debug\net7.0\EasyStay.Contracts.deps.json
+D:\Repositorios\Prueba22027\EasyStay\EasyStay.Contracts\bin\Debug\net7.0\EasyStay.Contracts.dll
+D:\Repositorios\Prueba22027\EasyStay\EasyStay.Contracts\bin\Debug\net7.0\EasyStay.Contracts.pdb
+D:\Repositorios\Prueba22027\EasyStay\EasyStay.Contracts\bin\Debug\net7.0\EasyStay.Models.dll
+D:\Repositorios\Prueba22027\EasyStay\EasyStay.Contracts\bin\Debug\net7.0\EasyStay.Models.pdb
+D:\Repositorios\Prueba22027\EasyStay\EasyStay.Contracts\obj\Debug\net7.0\EasyStay.Contracts.csproj.AssemblyReference.cache
+D:\Repositorios\Prueba22027\EasyStay\EasyStay.Contracts\obj\Debug\net7.0\EasyStay.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repositorios\Prueba22027\EasyStay\EasyStay.Contracts\obj\Debug\net7.0\EasyStay.Contracts.AssemblyInfoInputs.cache
+D:\Repositorios\Prueba22027\EasyStay\EasyStay.Contracts\obj\Debug\net7.0\EasyStay.Contracts.AssemblyInfo.cs
+D:\Repositorios\Prueba22027\EasyStay\EasyStay.Contracts\obj\Debug\net7.0\EasyStay.Contracts.csproj.CoreCompileInputs.cache
+D:\Repositorios\Prueba22027\EasyStay\EasyStay.Contracts\obj\Debug\net7.0\EasyStay.Contracts.csproj.CopyComplete
+D:\Repositorios\Prueba22027\EasyStay\EasyStay.Contracts\obj\Debug\net7.0\EasyStay.Contracts.dll
+D:\Repositorios\Prueba22027\EasyStay\EasyStay.Contracts\obj\Debug\net7.0\refint\EasyStay.Contracts.dll
+D:\Repositorios\Prueba22027\EasyStay\EasyStay.Contracts\obj\Debug\net7.0\EasyStay.Contracts.pdb
+D:\Repositorios\Prueba22027\EasyStay\EasyStay.Contracts\obj\Debug\net7.0\ref\EasyStay.Contracts.dll
