@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using EasyStay.Contracts.Services;
 using EasyStay.Domain.Helpers;
-using EasyStay.Models.Dto;
+using EasyStay.Models.Dto.Request;
+using EasyStay.Models.Dto.Response;
 using EasyStay.Models.Models;
 using Microsoft.AspNetCore.Identity;
 
@@ -9,11 +10,11 @@ namespace EasyStay.Domain.Services
 {
     public class AccountService : IAccountService
     {
-        private readonly JwtHandler _jwtHandler;
+        private readonly TokenHandler _jwtHandler;
         private readonly UserManager<Users> _userManager;
         private readonly IMapper _mapper;
 
-        public AccountService(UserManager<Users> userManager, IMapper mapper,JwtHandler jwtHandler)
+        public AccountService(UserManager<Users> userManager, IMapper mapper, TokenHandler jwtHandler)
         {
             this._jwtHandler = jwtHandler;
             this._userManager = userManager;
@@ -53,7 +54,7 @@ namespace EasyStay.Domain.Services
             }
         }
 
-        public async Task<RegisterResponseDto> Register(RegisterUserDto request)
+        public async Task<RegisterResponseDto> Register(RegisterUserRequestDto request)
         {
             try
             {

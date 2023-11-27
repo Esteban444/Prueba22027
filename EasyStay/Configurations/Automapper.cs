@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using EasyStay.Models.Dto;
+using EasyStay.Models.Dto.Request;
+using EasyStay.Models.Dto.Response;
 using EasyStay.Models.Models;
 
 namespace EasyStay.WebApi.Configurations
@@ -8,9 +9,15 @@ namespace EasyStay.WebApi.Configurations
     {
         public Automapper()
         {
-            CreateMap<Users, RegisterUserDto>().ReverseMap();
+            CreateMap<Users, RegisterUserRequestDto>().ReverseMap();
 
+            CreateMap<Hotel, HotelRequestDto>().ReverseMap();
+            CreateMap<Hotel, HotelResponseDto>().ReverseMap();
+            CreateMap<HotelRequestDto, HotelResponseDto>().ReverseMap();
             
+            CreateMap<Room, RoomRequestDto>().ReverseMap();
+            CreateMap<Room, RoomResponseDto>().ReverseMap();
+            CreateMap<RoomRequestDto, RoomResponseDto>().ReverseMap();
         }
     }
 }

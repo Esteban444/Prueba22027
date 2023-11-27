@@ -1,6 +1,7 @@
 ﻿using EasyStay.Contracts.Repositories;
 using EasyStay.Infraestructure.DataAcces;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace EasyStay.Infrastructure.Repositories
@@ -12,12 +13,6 @@ namespace EasyStay.Infrastructure.Repositories
         public BaseRepository(EasyStayDbContex context)
         {
             databaseContext = context;
-        }
-
-        public virtual Task<IQueryable<T>> GetAllAsync()
-        {
-            var entitySet = databaseContext.Set<T>();
-            return Task.FromResult(entitySet.AsQueryable());
         }
 
         public virtual IQueryable<T> GetAll()
@@ -40,19 +35,20 @@ namespace EasyStay.Infrastructure.Repositories
             return GetAll().Where(predicate);
         }
 
-        public virtual Task<IQueryable<T>> FindByAsync(Expression<Func<T, bool>> predicate)
-        {
-            var entitySet = databaseContext.Set<T>();
-            var query =  Task.FromResult(entitySet.Where(predicate));
-            return query;
-        }
-
         public virtual IQueryable<T> FindByAsNoTracking(Expression<Func<T, bool>> predicate)
         {
             return GetAll().AsNoTracking().Where(predicate);
         }
 
-        public virtual Task<IQueryable<T>> FindByAsNoTracking2(Expression<Func<T, bool>> predicate)
+
+        public virtual Task<IQueryable<T>> FindByAsync(Expression<Func<T, bool>> predicate)
+        {
+            var entitySet = databaseContext.Set<T>();
+            var query = Task.FromResult(entitySet.Where(predicate));
+            return query;
+        }
+
+        public virtual Task<IQueryable<T>> FindByAsNoTrackingAsync(Expression<Func<T, bool>> predicate)
         {
             var entitySet = databaseContext.Set<T>();
             var query = Task.FromResult(entitySet.Where(predicate).AsNoTracking());
@@ -133,6 +129,11 @@ namespace EasyStay.Infrastructure.Repositories
                 propertyOfB!.SetValue(fromDB, propertyOfReceiver.GetValue(fromRequest));
             }
             return Task.FromResult(fromDB);
+        }
+
+        public Task<IQueryable<T>> GetAllAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

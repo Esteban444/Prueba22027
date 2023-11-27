@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EasyStay.Contracts\EasyStay.Contracts.csproj" />
+    <ProjectReference Include="..\EasyStay.Models\EasyStay.Models.csproj" />
   </ItemGroup>
 
 </Project>

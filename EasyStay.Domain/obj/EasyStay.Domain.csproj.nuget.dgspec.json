@@ -97,6 +97,9 @@
             "projectReferences": {
               "D:\\Repositorios\\Prueba22027\\EasyStay\\EasyStay.Contracts\\EasyStay.Contracts.csproj": {
                 "projectPath": "D:\\Repositorios\\Prueba22027\\EasyStay\\EasyStay.Contracts\\EasyStay.Contracts.csproj"
+              },
+              "D:\\Repositorios\\Prueba22027\\EasyStay\\EasyStay.Models\\EasyStay.Models.csproj": {
+                "projectPath": "D:\\Repositorios\\Prueba22027\\EasyStay\\EasyStay.Models\\EasyStay.Models.csproj"
               }
             }
           }

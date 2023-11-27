@@ -10,6 +10,7 @@
         "dependencies": {
           "AutoMapper": "12.0.1",
           "EasyStay.Contracts": "1.0.0",
+          "EasyStay.Models": "1.0.0",
           "System.IdentityModel.Tokens.Jwt": "6.24.0"
         },
         "runtime": {

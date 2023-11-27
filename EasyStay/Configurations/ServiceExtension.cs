@@ -1,16 +1,19 @@
-﻿using EasyStay.Contracts.Services;
+﻿using EasyStay.Contracts.Repositories;
+using EasyStay.Contracts.Services;
 using EasyStay.Domain.Helpers;
 using EasyStay.Domain.Services;
 using EasyStay.Infraestructure.DataAcces;
+using EasyStay.Infraestructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace EasyStay.WebApi.Configurations
 {
     public static class ServiceExtension
     {
-        public static IServiceCollection AddContext(this IServiceCollection services, IConfiguration Configuracion)
+        public static IServiceCollection AddContext(this IServiceCollection services, IConfiguration Configuration)
         {
-            services.AddDbContext<EasyStayDbContex>(options => options.UseSqlServer(Configuracion.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<EasyStayDbContex>(options =>
+                  options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             return services;
         }
 
@@ -30,13 +33,16 @@ namespace EasyStay.WebApi.Configurations
 
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-            //services.AddScoped<IRepositoryCompany, CompanyRepository>();
+            services.AddScoped<IHotelRepository, HotelRepository>();
+            services.AddScoped<IRoomRepository, RoomRepository>();
 
 
 
-            services.AddScoped<JwtHandler>();
+            services.AddScoped<TokenHandler>();
             services.AddScoped<IAccountService, AccountService>();
-            
+            services.AddScoped<IHotelService, HotelService>();
+            services.AddScoped<IRoomService, RoomService>();
+
 
             return services;
         }

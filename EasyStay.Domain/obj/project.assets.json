@@ -1552,6 +1552,7 @@
     "net7.0": [
       "AutoMapper >= 12.0.1",
       "EasyStay.Contracts >= 1.0.0",
+      "EasyStay.Models >= 1.0.0",
       "System.IdentityModel.Tokens.Jwt >= 6.24.0"
     ]
   },
@@ -1589,6 +1590,9 @@
           "projectReferences": {
             "D:\\Repositorios\\Prueba22027\\EasyStay\\EasyStay.Contracts\\EasyStay.Contracts.csproj": {
               "projectPath": "D:\\Repositorios\\Prueba22027\\EasyStay\\EasyStay.Contracts\\EasyStay.Contracts.csproj"
+            },
+            "D:\\Repositorios\\Prueba22027\\EasyStay\\EasyStay.Models\\EasyStay.Models.csproj": {
+              "projectPath": "D:\\Repositorios\\Prueba22027\\EasyStay\\EasyStay.Models\\EasyStay.Models.csproj"
             }
           }
         }

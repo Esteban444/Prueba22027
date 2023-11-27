@@ -6,9 +6,9 @@ namespace EasyStay.Contracts.Repositories
     {
         T GetSingle(Expression<Func<T, bool>> predicate);
         IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
-        Task<IQueryable<T>> FindByAsync(Expression<Func<T, bool>> predicate);
-        Task<IQueryable<T>> FindByAsNoTracking2(Expression<Func<T, bool>> predicate);
         IQueryable<T> FindByAsNoTracking(Expression<Func<T, bool>> predicate);
+        Task<IQueryable<T>> FindByAsync(Expression<Func<T, bool>> predicate);
+        Task<IQueryable<T>> FindByAsNoTrackingAsync(Expression<Func<T, bool>> predicate);
         Task<IQueryable<T>> GetAllAsync();
         IQueryable<T> GetAll();
         Task<T> GetFirst(Expression<Func<T, bool>> predicate);

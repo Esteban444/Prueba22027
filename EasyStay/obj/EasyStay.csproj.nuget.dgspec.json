@@ -97,6 +97,9 @@
             "projectReferences": {
               "D:\\Repositorios\\Prueba22027\\EasyStay\\EasyStay.Contracts\\EasyStay.Contracts.csproj": {
                 "projectPath": "D:\\Repositorios\\Prueba22027\\EasyStay\\EasyStay.Contracts\\EasyStay.Contracts.csproj"
+              },
+              "D:\\Repositorios\\Prueba22027\\EasyStay\\EasyStay.Models\\EasyStay.Models.csproj": {
+                "projectPath": "D:\\Repositorios\\Prueba22027\\EasyStay\\EasyStay.Models\\EasyStay.Models.csproj"
               }
             }
           }
@@ -171,6 +174,9 @@
               "D:\\Repositorios\\Prueba22027\\EasyStay\\EasyStay.Contracts\\EasyStay.Contracts.csproj": {
                 "projectPath": "D:\\Repositorios\\Prueba22027\\EasyStay\\EasyStay.Contracts\\EasyStay.Contracts.csproj"
               },
+              "D:\\Repositorios\\Prueba22027\\EasyStay\\EasyStay.Domain\\EasyStay.Domain.csproj": {
+                "projectPath": "D:\\Repositorios\\Prueba22027\\EasyStay\\EasyStay.Domain\\EasyStay.Domain.csproj"
+              },
               "D:\\Repositorios\\Prueba22027\\EasyStay\\EasyStay.Models\\EasyStay.Models.csproj": {
                 "projectPath": "D:\\Repositorios\\Prueba22027\\EasyStay\\EasyStay.Models\\EasyStay.Models.csproj"
               }
@@ -187,6 +193,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.14, )"
@@ -214,6 +224,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.14, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             }
           },
           "imports": [
@@ -370,17 +384,19 @@
               "target": "Package",
               "version": "[7.0.14, )"
             },
-            "Microsoft.AspNetCore.OpenApi": {
+            "Newtonsoft.Json": {
               "target": "Package",
-              "version": "[7.0.13, )"
+              "version": "[13.0.3, )"
             },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
+            "Swashbuckle.AspNetCore.Swagger": {
               "target": "Package",
-              "version": "[7.0.14, )"
+              "version": "[6.5.0, )"
             },
-            "Swashbuckle.AspNetCore": {
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
               "target": "Package",
               "version": "[6.5.0, )"
             }
