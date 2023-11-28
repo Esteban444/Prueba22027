@@ -71,9 +71,46 @@ namespace EasyStay.Domain.Services
                     return response;
                 }
 
+                // Assign roles to the user
+                var rolesToAssign = new List<string> { request.Role! };
+                await AssignRoles(user.Id, rolesToAssign);
+
                 var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 response.IsSuccess = true;
                 return response;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<bool> AssignRoles(string userId, IEnumerable<string> roles)
+        {
+            try
+            {
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user == null)
+                {
+                    return false; 
+                }
+
+                // Obtén los roles actuales del usuario
+                var currentRoles = await _userManager.GetRolesAsync(user);
+
+                // Roles a agregar (nuevos roles que no están actualmente asignados)
+                var rolesToAdd = roles.Except(currentRoles);
+
+                // Roles a quitar (roles actuales que no se incluyen en la nueva lista de roles)
+                var rolesToRemove = currentRoles.Except(roles);
+
+                // Agrega los nuevos roles
+                await _userManager.AddToRolesAsync(user, rolesToAdd);
+
+                // Quita los roles no deseados
+                await _userManager.RemoveFromRolesAsync(user, rolesToRemove);
+
+                return true; // Asignación de roles exitosa
             }
             catch (Exception)
             {

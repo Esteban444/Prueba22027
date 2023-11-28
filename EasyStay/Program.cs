@@ -53,9 +53,7 @@ builder.Services.AddIdentity<Users, IdentityRole>(options =>
     options.Lockout.AllowedForNewUsers = true;
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);
     options.Lockout.MaxFailedAccessAttempts = 3;
-})
-.AddEntityFrameworkStores<EasyStayDbContex>()
-.AddDefaultTokenProviders();
+}).AddEntityFrameworkStores<EasyStayDbContex>().AddDefaultTokenProviders();
 
 builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
                 opt.TokenLifespan = TimeSpan.FromHours(2));

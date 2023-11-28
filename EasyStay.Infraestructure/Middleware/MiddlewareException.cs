@@ -10,6 +10,7 @@ namespace EasyStay.Infrastructure.Middleware
     {
         private readonly RequestDelegate _requestDelegate;
         private readonly ILogger<MiddlewareException> _logger;
+
         public MiddlewareException(RequestDelegate next, ILogger<MiddlewareException> logger)
         {
             _requestDelegate = next;
@@ -24,28 +25,34 @@ namespace EasyStay.Infrastructure.Middleware
             }
             catch (Exception e)
             {
-                await ManejoExcepcionAsync(context, e, _logger);
+                await HandlingExcepcionAsync(context, e, _logger);
             }
         }
 
-        public async Task ManejoExcepcionAsync(HttpContext context, Exception e, ILogger<MiddlewareException> logger)
+        public async Task HandlingExcepcionAsync(HttpContext context, Exception e, ILogger<MiddlewareException> logger)
         {
             object errores = null;
             switch (e)
             {
                 case HandlingExcepciones me:
-                    logger.LogError(e, "Manejo de errores");
-                    errores = me.Error;
-                    context.Response.StatusCode = (int)me.Codigo;
+                    logger.LogError(e, "Error handling");
+                    errores = new { Mensage = me.Error };
+                    context.Response.StatusCode = (int)me.Code;
                     break;
 
                 case Exception ex:
-                    logger.LogError(e, "Error de servidor");
-                    errores = string.IsNullOrWhiteSpace(ex.Message) ? "Error" : ex.Message;
+                    logger.LogError(e, "Server error");
+                    errores = new { Mensage = string.IsNullOrWhiteSpace(ex.Message) ? "Error" : ex.Message };
                     context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     break;
 
+                default:
+                    logger.LogError(e, "Unhandled exception");
+                    errores = new { Mensage = "Unhandled exception" };
+                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    break;
             }
+
             context.Response.ContentType = "application/json";
             if (errores != null)
             {
@@ -54,4 +61,5 @@ namespace EasyStay.Infrastructure.Middleware
             }
         }
     }
+
 }

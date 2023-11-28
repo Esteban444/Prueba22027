@@ -8,6 +8,7 @@ namespace EasyStay.Models.Dto.Response
 {
     public class RoomResponseDto
     {
+        public Guid Id { get; set; }
         public Guid HotelId { get; set; }
         public string? TypeRoom { get; set; }
         public string? NumberOfRoom { get; set; }
@@ -15,5 +16,8 @@ namespace EasyStay.Models.Dto.Response
         public decimal BasePrice { get; set; }
         public decimal Taxes { get; set; }
         public string? City { get; set; }
+        public int? NumberOfPerson { get; set; }
+        public DateTime? StartDateRoomAvailability { get; set; }
+        public DateTime? EndDateRoomAvailability { get; set; }
     }
 }

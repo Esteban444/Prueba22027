@@ -35,6 +35,8 @@ namespace EasyStay.WebApi.Configurations
         {
             services.AddScoped<IHotelRepository, HotelRepository>();
             services.AddScoped<IRoomRepository, RoomRepository>();
+            services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<IReservationRepository, ReservationRepository>();
 
 
 
@@ -42,6 +44,8 @@ namespace EasyStay.WebApi.Configurations
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IHotelService, HotelService>();
             services.AddScoped<IRoomService, RoomService>();
+            services.AddScoped<IClientService, ClientService>();
+            services.AddScoped<IReservationService, ReservationService>();
 
 
             return services;

@@ -5,10 +5,8 @@ using EasyStay.Domain.Helpers;
 using EasyStay.Models.Dto.Request;
 using EasyStay.Models.Dto.Response;
 using EasyStay.Models.Models;
-using System.Net;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using System.Data.Entity;
+using System.Net;
 
 namespace EasyStay.Domain.Services
 {
@@ -26,8 +24,7 @@ namespace EasyStay.Domain.Services
         {
             try
             {
-                var result = await _hotelRepository.FindByAsNoTracking(x => x.Available).ToArrayAsync();
-                //await Task.FromResult(result);
+                var result = await _hotelRepository.FindByAsNoTracking(x => x.Available).ToListAsync();
                 return _mapper.Map<IEnumerable<HotelResponseDto>>(result);
             }
             catch (Exception)
@@ -41,7 +38,6 @@ namespace EasyStay.Domain.Services
             try
             {
                 var response = await _hotelRepository.FindByAsNoTracking(x => x.Available && x.Id == id).FirstOrDefaultAsync();
-                //var response = result.FirstOrDefault();
                 if (response != null)
                 {
                     return _mapper.Map<HotelResponseDto>(response);
@@ -78,8 +74,7 @@ namespace EasyStay.Domain.Services
         {
             try
             {
-                var preResult = await _hotelRepository.FindByAsync(x => x.Id == id);
-                var result = preResult.FirstOrDefault();
+                var result = await _hotelRepository.FindBy(x => x.Id == id).FirstOrDefaultAsync();
                 if (result != null)
                 {
                     var properties = new UpdatedMapperProperties<Hotel, HotelRequestDto>();
@@ -104,8 +99,7 @@ namespace EasyStay.Domain.Services
         {
             try
             {
-                var result = await _hotelRepository.FindByAsync(x => x.Id == id);
-                var hotel = result.FirstOrDefault();
+                var hotel = await _hotelRepository.FindBy(x => x.Id == id).FirstOrDefaultAsync();
                 if (hotel != null)
                 {
                    await _hotelRepository.Delete(hotel);
@@ -123,21 +117,13 @@ namespace EasyStay.Domain.Services
         {
             try
             {
-                var result = await _hotelRepository.FindByAsNoTracking(x => x.Available == false).FirstOrDefaultAsync();
-                //await Task.FromResult(result);
-                if (result != null)
-                {
-                    return _mapper.Map<IEnumerable<HotelResponseDto>>(result);
-                }
-                else
-                {
-                    throw new Exception();
-                }
-
+                var result = await _hotelRepository.FindByAsNoTracking(x => x.Available == false).ToListAsync();
+                
+                return _mapper.Map<IEnumerable<HotelResponseDto>>(result);
             }
             catch (Exception)
             {
-                throw new HandlingExcepciones(HttpStatusCode.NotFound, new { Mensage = "There are no hotels for enable." });
+                throw;
             }
         }
     }

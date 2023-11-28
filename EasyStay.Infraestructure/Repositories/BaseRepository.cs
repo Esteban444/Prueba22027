@@ -39,22 +39,6 @@ namespace EasyStay.Infrastructure.Repositories
         {
             return GetAll().AsNoTracking().Where(predicate);
         }
-
-
-        public virtual Task<IQueryable<T>> FindByAsync(Expression<Func<T, bool>> predicate)
-        {
-            var entitySet = databaseContext.Set<T>();
-            var query = Task.FromResult(entitySet.Where(predicate));
-            return query;
-        }
-
-        public virtual Task<IQueryable<T>> FindByAsNoTrackingAsync(Expression<Func<T, bool>> predicate)
-        {
-            var entitySet = databaseContext.Set<T>();
-            var query = Task.FromResult(entitySet.Where(predicate).AsNoTracking());
-            return query;
-        }
-
         public async Task Add(T entity)
         {
             var UpdatedAt = entity.GetType().GetProperty("UpdatedAt");
@@ -129,11 +113,6 @@ namespace EasyStay.Infrastructure.Repositories
                 propertyOfB!.SetValue(fromDB, propertyOfReceiver.GetValue(fromRequest));
             }
             return Task.FromResult(fromDB);
-        }
-
-        public Task<IQueryable<T>> GetAllAsync()
-        {
-            throw new NotImplementedException();
         }
     }
 }

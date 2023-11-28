@@ -4,12 +4,12 @@ namespace EasyStay.Domain.Helpers
 {
     public class HandlingExcepciones : Exception
     {
-        public HttpStatusCode Codigo { get; }
+        public HttpStatusCode Code { get; }
         public object Error { get; }
 
         public HandlingExcepciones(HttpStatusCode status, object error = null)
         {
-            Codigo = status;
+            Code = status;
             Error = error;
         }
     }

@@ -10,5 +10,7 @@
         public string? Email { get; set; }
         public string? Nit { get; set; }
         public bool Available { get; set; }
+
+        public virtual ICollection<Room>? Rooms { get; set; }
     }
 }

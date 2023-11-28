@@ -18,6 +18,15 @@ namespace EasyStay.WebApi.Configurations
             CreateMap<Room, RoomRequestDto>().ReverseMap();
             CreateMap<Room, RoomResponseDto>().ReverseMap();
             CreateMap<RoomRequestDto, RoomResponseDto>().ReverseMap();
+
+
+            CreateMap<Client, ClientRequestDto>().ReverseMap();
+            CreateMap<Client, ClientResponseDto>().ReverseMap();
+            CreateMap<ClientRequestDto, ClientResponseDto>().ReverseMap();
+
+            CreateMap<Reservation, ReservationRequestDto>().ReverseMap();
+            CreateMap<Reservation, ReservationResponseDto>().ReverseMap();
+            CreateMap<ReservationRequestDto, ReservationResponseDto>().ReverseMap();
         }
     }
 }

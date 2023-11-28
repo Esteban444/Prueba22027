@@ -2,10 +2,11 @@
 using EasyStay.Contracts.Repositories;
 using EasyStay.Contracts.Services;
 using EasyStay.Domain.Helpers;
+using EasyStay.Models.Dto.Filters;
 using EasyStay.Models.Dto.Request;
 using EasyStay.Models.Dto.Response;
 using EasyStay.Models.Models;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 
 namespace EasyStay.Domain.Services
@@ -26,9 +27,8 @@ namespace EasyStay.Domain.Services
             try
             {
                 var hotelId = request.Select(x => x.HotelId).FirstOrDefault();
-                var result = await _hotelRepocitory.FindByAsync(x => x.Id == hotelId);
-                var hotel = result.FirstOrDefault();
-                if (hotel!.Available)
+                var result = await _hotelRepocitory.FindBy(x => x.Id == hotelId).FirstOrDefaultAsync();
+                if (result!.Available)
                 {
                     var newHotel = _mapper.Map<List<Room>>(request);
                     await _roomRepocitory.AddRange(newHotel);
@@ -52,11 +52,10 @@ namespace EasyStay.Domain.Services
         {
             try
             {
-                var response = await _roomRepocitory.FindByAsNoTracking(x => x.Available && x.Id == id).FirstOrDefaultAsync();
-                //var response = result.FirstOrDefault();
-                if (response != null)
+                var result = await _roomRepocitory.FindByAsNoTracking(x => x.Available && x.Id == id).FirstOrDefaultAsync();
+                if (result != null)
                 {
-                    return _mapper.Map<RoomResponseDto>(response);
+                    return _mapper.Map<RoomResponseDto>(result);
                 }
                 else
                 {
@@ -70,13 +69,28 @@ namespace EasyStay.Domain.Services
             }
         }
 
-        public async Task<IEnumerable<RoomResponseDto>> GetRooms()
+        public async Task<List<RoomResponseDto>> GetRooms(RoomFilter filter)
         {
             try
             {
                 var rooms = await _roomRepocitory.FindByAsNoTracking(x => x.Available).ToListAsync();
-                //await Task.FromResult(rooms);
-                return _mapper.Map<IEnumerable<RoomResponseDto>>(rooms);
+                if (filter.NumberOfPerson != null)
+                {
+                    rooms = rooms.Where(x => x.NumberOfPerson == filter.NumberOfPerson).ToList();
+                }
+                if (!string.IsNullOrEmpty(filter.City))
+                {
+                    rooms = rooms.Where(x => x.City!.ToLower().Contains(filter.City.ToLower())).ToList();
+                }
+                if (filter.StartDateRoomAvailability != null)
+                {
+                    rooms = rooms.Where(x => x.StartDateRoomAvailability == filter.StartDateRoomAvailability).ToList();
+                }
+                if (filter.EndDateRoomAvailability != null)
+                {
+                    rooms = rooms.Where(x => x.EndDateRoomAvailability == filter.EndDateRoomAvailability).ToList();
+                }
+                return _mapper.Map<List<RoomResponseDto>>(rooms);
             }
             catch (Exception)
             {
@@ -89,7 +103,6 @@ namespace EasyStay.Domain.Services
             try
             {
                 var rooms = await _roomRepocitory.FindByAsNoTracking(x => x.Available == false).ToListAsync();
-                //await Task.FromResult(rooms);
                 return _mapper.Map<IEnumerable<RoomResponseDto>>(rooms);
             }
             catch (Exception)
@@ -102,8 +115,7 @@ namespace EasyStay.Domain.Services
         {
             try
             {
-                var preResult = await _roomRepocitory.FindByAsync(x => x.Id == id);
-                var result = preResult.FirstOrDefault();
+                var result = await _roomRepocitory.FindBy(x => x.Id == id).FirstOrDefaultAsync();
                 if (result != null)
                 {
                     var properties = new UpdatedMapperProperties<Room, RoomRequestDto>();
@@ -128,8 +140,7 @@ namespace EasyStay.Domain.Services
         {
             try
             {
-                var result = await _roomRepocitory.FindByAsync(x => x.Available && x.Id == id);
-                var response = result.FirstOrDefault();
+                var response = await _roomRepocitory.FindBy(x => x.Available && x.Id == id).FirstOrDefaultAsync();
                 if (response != null)
                 {
                     await _roomRepocitory.Delete(response);
